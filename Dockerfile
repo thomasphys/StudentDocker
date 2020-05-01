@@ -29,7 +29,8 @@ COPY root ./root
 RUN mkdir /opt/root && \
     cd /opt/root && \
     cmake -Dxrootd=OFF -Dbuiltin_xrootd=OFF ${HOME}/root/ && \
-    make -j8 && \
+    make -j4 && \
+    source bin/thisroot.sh && \
     rm -r ${HOME}/root/ && \
     cd    
 
@@ -42,13 +43,13 @@ COPY geant4 ./geant4
 RUN mkdir /opt/geant4 && \
     cd /opt/geant4 && \
     cmake -DGEANT4_INSTALL_DATA=ON -DGEANT4_USE_OPENGL_X11=ON -DGEANT4_USE_RAYTRACER_X11=ON ${HOME}/geant4/ &&\
-    cmake --build . -- -j8  
+    cmake --build . -- -j4  
 
 # Create user
 RUN groupadd -r physuser -g 433
-#RUN useradd -u 431 -r -g physuser -s /bin/bash -c "Physics user" physuser
-#RUN mkdir -p /home/physuser
-#RUN chown -R physuser:physuser /home/physuser
+RUN useradd -u 431 -r -g physuser -s /bin/bash -c "Physics user" physuser
+RUN mkdir -p /home/physuser
+RUN chown -R physuser:physuser /home/physuser
 
 # Become that user
 USER physuser
