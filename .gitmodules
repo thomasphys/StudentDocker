@@ -1,6 +1,6 @@
 [submodule "root"]
 	path = root
-	url = /var/Common.git
+	url = git@github.com:root-project/root.git
 [submodule "geant4"]
 	path = geant4
-	url = /var/Common.git
+	url = git@github.com:Geant4/geant4.git
