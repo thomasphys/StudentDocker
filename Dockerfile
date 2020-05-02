@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-MAINTAINER Thomas McElroy <thomas.mcelroy@mcgill.ca>
+MAINTAINER Thomas McElroy
 
 # Explicitly become root (even though likely we are root already)
 USER root
@@ -12,7 +12,7 @@ SHELL ["/bin/bash", "-c"]
 RUN apt-get update && \
     apt-get install -y \
     python3 python3-dev python3-pip curl \
-    git dpkg-dev cmake g++ gcc binutils libx11-dev \
+    git vim-gtk dpkg-dev cmake g++ gcc binutils libx11-dev \
     libxpm-dev libxft-dev libxext-dev sudo && \
     rm -rf /var/lib/apt/lists/*
 
@@ -30,7 +30,6 @@ RUN mkdir /opt/root && \
     cd /opt/root && \
     cmake -Dxrootd=OFF -Dbuiltin_xrootd=OFF ${HOME}/root/ && \
     make -j4 && \
-    source bin/thisroot.sh && \
     rm -r ${HOME}/root/ && \
     cd    
 
@@ -38,12 +37,16 @@ RUN mkdir /opt/root && \
 RUN apt-get update && apt-get install -y libxerces-c3-dev freeglut3-dev libmotif-dev tk-dev cmake libxpm-dev libxmu-dev libxi-dev
 
 #WORKDIR /geant4
-COPY geant4 ./geant4
+COPY geant4 /opt/geant4
 
-RUN mkdir /opt/geant4 && \
-    cd /opt/geant4 && \
-    cmake -DGEANT4_INSTALL_DATA=ON -DGEANT4_USE_OPENGL_X11=ON -DGEANT4_USE_RAYTRACER_X11=ON ${HOME}/geant4/ &&\
-    cmake --build . -- -j4  
+RUN mkdir /opt/geant4/build && \
+    cd /opt/geant4/build && \
+    cmake -DCMAKE_INSTALL_PREFIX=/opt/geant4/ -DGEANT4_INSTALL_DATA=ON -DGEANT4_USE_OPENGL_X11=ON -DGEANT4_USE_RAYTRACER_X11=ON /opt/geant4/ &&\
+    cmake --build . -- -j8  && \
+    cmake --build . --target install
+
+# non needed for most
+RUN apt-get update && apt-get install -y libtet1.5-dev libassimp-dev
 
 # Create user
 RUN groupadd -r physuser -g 433
@@ -53,5 +56,5 @@ RUN chown -R physuser:physuser /home/physuser
 
 # Become that user
 USER physuser
-
+COPY env.sh /home/physuser/
 WORKDIR /home/physuser
