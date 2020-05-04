@@ -46,7 +46,7 @@ RUN mkdir /opt/geant4/build && \
     cmake --build . --target install
 
 # non needed for most
-RUN apt-get update && apt-get install -y libtet1.5-dev libassimp-dev
+RUN apt-get update && apt-get install -y libtet1.5-dev libassimp-dev wget
 
 # Create user
 RUN groupadd -r physuser -g 433
