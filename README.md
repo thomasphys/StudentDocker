@@ -14,3 +14,5 @@ docker pull thomasmcelroy/saporientation
 
 once inside container run "source env.sh" to setup root and geant environment variables.
 
+
+DockerHub: https://hub.docker.com/r/thomasmcelroy/saporientation 
