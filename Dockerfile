@@ -22,7 +22,7 @@ RUN  apt install -y python3-pip fftw3-dev & \
      if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
      if [[ ! -e /usr/bin/python-config ]]; then ln -sf /usr/bin/python3-config /usr/bin/python-config; fi && \
      if [[ ! -e /usr/bin/pip ]]; then ln -sf /usr/bin/pip3 /usr/bin/pip; fi &&\
-     pip3 install Numpy Pandas Matplotlib Scikit-Learn Scipy jupyterlab 
+     pip3 install Numpy Pandas Matplotlib Scikit-Learn Scipy jupyterlab tensorflow astropy
 
 WORKDIR /root
 COPY root ./root
