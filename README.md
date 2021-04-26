@@ -48,7 +48,7 @@ You can name your containers upon running,
 
 `sudo docker run -it --name NAME thomasmcelroy/saporientation`
 
-where `name` is whatever you want to call your container. This way you can run the same container for later use without creating too many containers.
+where `NAME` is whatever you want to call your container. This way you can run the same container for later use without creating too many containers.
 
 ### Mounting a directory 
 You can mount a directory into the container so that you can write to your machine and save any results, notes etc... You produce in the container even after it is stopped and deleted.
