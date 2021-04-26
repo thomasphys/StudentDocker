@@ -54,6 +54,6 @@ DockerHub link: https://hub.docker.com/r/thomasmcelroy/saporientation
 If you would like to contribute to this image, please open an issue on the repository on GitHub and we will allow you to branch off and develop your code. 
 
 ### List of Contributors
-Thomas McElroy
-Soud Al Kharusi
-Dilraj Ghuman
+- Thomas McElroy 
+- Soud Al Kharusi
+- Dilraj Ghuman
