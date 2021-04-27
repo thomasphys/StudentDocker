@@ -57,7 +57,7 @@ You can mount a directory into the container so that you can write to your machi
 
 Keep in mind that you may need to set the permissons on the folder you are mounting from your machine to read write and execute i.e. execute `chmod 777 /path/to/dir/onYourMachine` before mounting the volume.
 
-## Link to the ltest Docker Imager
+## Link to the ltest Docker Image
 DockerHub link: https://hub.docker.com/r/thomasmcelroy/saporientation 
 
 ## Notes for Windows Users
