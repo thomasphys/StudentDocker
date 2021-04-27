@@ -1,27 +1,10 @@
-## Prep:
-1. Install Docker ([Ubuntu](https://docs.docker.com/engine/install/ubuntu/), [Windows](https://docs.docker.com/docker-for-windows/wsl/),  )
+# Prerequisites
+Install Docker ([Ubuntu](https://docs.docker.com/engine/install/ubuntu/), [Windows](https://docs.docker.com/docker-for-windows/wsl/),  )
    - For Windows, make sure to get the latest version of Ubuntu (20.04), as it has been confirmed to work.
-2. Clone this GitHub repository
-3. From your terminal, navigate this repository and run `git submodule update --init --recursive`
-   - This gets you the latest ROOT and Geant4 packages when building the Docker Image.  
 
-## Building the Docker Image:
 
-You can build the docker image yourself by doing `docker build -t <tagname> ./ `
 
-This command will take a couple hours to run. The final image will be 8-9 GB so beware! 
-
-## Directly pulling the latest image:
-If you don't want to build the image directly then you can instead do `docker pull thomasmcelroy/saporientation` which pulls the latest image on the DockerHub. 
-
-You can then run `docker images` to see all your downloaded images. Take note of the Image ID for the sap orientation image. 
-
-Run `sudo docker build -t [Image ID] ./` to build the image.
-
-## Using the Image
-Once inside the container, run `source env.sh` to setup ROOT and Geant4 environment variables.
-
-## Fastest way to get going
+# Quick Start
 This will work for both Ubuntu and Windows.
 
 Pull and run the latest image for the orientation.  
@@ -57,7 +40,14 @@ You can mount a directory into the container so that you can write to your machi
 
 Keep in mind that you may need to set the permissons on the folder you are mounting from your machine to read write and execute i.e. execute `chmod 777 /path/to/dir/onYourMachine` before mounting the volume.
 
-## Link to the ltest Docker Image
+## Using Jupyter Notebooks through the Docker Image
+Start your Docker container with `sudo docker run -it -v /home/soud/McGill/StudentDocker/:/home/physuser/mountedDirectory:rw -p 8888:8888 --ip 0.0.0.0 thomasmcelroy/saporientation`. 
+
+Once inside the image, run `jupyter notebook --ip 0.0.0.0 --allow-root --no-browser --NotebookApp.token='sometoken'`
+
+On your browser, you can now go to `http://localhost:8888` and type in the "sometoken" you set in the jupyter notebook run command. Voila! Notebook away!
+
+## Link to the latest Docker Image
 DockerHub link: https://hub.docker.com/r/thomasmcelroy/saporientation 
 
 ## Notes for Windows Users
@@ -84,3 +74,24 @@ If you would like to contribute to this image, please open an issue on the repos
 - Thomas McElroy 
 - Soud Al Kharusi
 - Dilraj Ghuman
+
+# Deprecated
+## Prep:
+1. Install Docker ([Ubuntu](https://docs.docker.com/engine/install/ubuntu/), [Windows](https://docs.docker.com/docker-for-windows/wsl/),  )
+   - For Windows, make sure to get the latest version of Ubuntu (20.04), as it has been confirmed to work.
+2. Clone this GitHub repository
+3. From your terminal, navigate this repository and run `git submodule update --init --recursive`
+   - This gets you the latest ROOT and Geant4 packages when building the Docker Image.  
+
+## Building the Docker Image:
+
+You can build the docker image yourself by doing `docker build -t <tagname> ./ `
+
+This command will take a couple hours to run. The final image will be 8-9 GB so beware! 
+
+## Directly pulling the latest image:
+If you don't want to build the image directly then you can instead do `docker pull thomasmcelroy/saporientation` which pulls the latest image on the DockerHub. 
+
+You can then run `docker images` to see all your downloaded images. Take note of the Image ID for the sap orientation image. 
+
+Run `sudo docker build -t [Image ID] ./` to build the image.
