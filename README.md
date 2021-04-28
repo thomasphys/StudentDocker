@@ -1,7 +1,7 @@
 # Table of Contents
 - [Prerequisites](#prerequisites)
 - [Quick Start](#quick-start)
-   - [Docker Tips and Tricks](#docker-tips-&-tricks)
+   - [Docker Tips and Tricks](#docker-tips-and-tricks)
    - [Mounting a Directory](#mounting-a-directory)
    - [Jupyter Notebooks](#Using-Jupyter-Notebooks-through-the-Docker-Image)
 - [Notes for Windows Users](#notes-for-windows-users)
@@ -28,7 +28,7 @@ Once inside the container, execute `source env.sh` to get your environment ready
 
 You can exit the container by typing `exit` or `ctrl+D`
 
-## Docker Tips & Tricks
+## Docker Tips and Tricks
 
 ### List all Containers
 
