@@ -1,7 +1,6 @@
 # Prerequisites
 Install Docker ([Ubuntu](https://docs.docker.com/engine/install/ubuntu/), [Windows](https://docs.docker.com/docker-for-windows/wsl/),  )
-   - For Windows, make sure to get the latest version of Ubuntu (20.04), as it has been confirmed to work.
-
+   - For Windows, make sure to get the latest version of Ubuntu (20.04), as it has been confirmed to work. Read on to see how to enable graphical interfacing in Windows.
 
 
 # Quick Start
@@ -50,7 +49,25 @@ On your browser, you can now go to `http://localhost:8888` and type in the "some
 ## Link to the latest Docker Image
 DockerHub link: https://hub.docker.com/r/thomasmcelroy/saporientation 
 
-## Notes for Windows Users
+## Windows X11 Forwarding (Graphical Options)
+Windows is a bit annoying for getting graphical options running, especially since things were changed with the move to WSL2. Regardless, the first thing you'll want to do is update your package options by running
+
+`sudo apt update'
+
+in your subsystem terminal. Then you'll get the graphical suite by running
+
+`sudo apt install x11-apps`.
+
+Now the tough part begins. This will involve giving the terminal access through your firewall. I found following [this](https://skeptric.com/wsl2-xserver/) guide to work. Note it will require you to install VcXsrv aswell.
+
+VcXsrv creates a virtual session for your ubuntu subsystem to forward to and will need to be run each time beforehand.
+
+Once you have followed the instructions to completion, check that the X11 forwarding works by running `xclock` in your terminal. This should pop up an anologue clock on your screen.
+
+### Dockerx
+
+
+### Notes for Windows Users
 It is important to go through the instructions outlined in the Docker installation in the order described. 
 
 In order for the Windows Subsystem for Linux (WSL) to work with the Docker application, you need them both to be running simultaneously.
