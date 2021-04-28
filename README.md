@@ -52,7 +52,7 @@ DockerHub link: https://hub.docker.com/r/thomasmcelroy/saporientation
 ## Windows X11 Forwarding (Graphical Options)
 Windows is a bit annoying for getting graphical options running, especially since things were changed with the move to WSL2. Regardless, the first thing you'll want to do is update your package options by running
 
-`sudo apt update'
+`sudo apt update`
 
 in your subsystem terminal. Then you'll get the graphical suite by running
 
