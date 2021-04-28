@@ -7,7 +7,7 @@
 - [Notes for Windows Users](#notes-for-windows-users)
    - [Graphics Forwarding for Windows Users](#Windows-X11-Forwarding-(Graphical-Options))
 - [Contribution](#how-to-contribute)
-- [DockerHub Link](#how-to-contribute)
+- [DockerHub Link](#Link-to-the-latest-Docker-Image)
 
 # Prerequisites
 
