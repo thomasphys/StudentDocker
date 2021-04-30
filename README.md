@@ -132,7 +132,8 @@ If the clock appears on your screen, you are pretty much done! The only differen
 
 `docker run -it -r DISPLAY=$DISPLAY -u root --name test thomasmcelroy/saporientation`
 
-This is assuming the `$DISPLAY` variable is set as the guide recommended. To check that it worked, repeat the above steps of installing graphical suite and running `xclock`. 
+This is assuming the `$DISPLAY` variable is set as the guide recommended. To check that it worked, repeat the above steps of installing graphical suite and running `xclock`.
+
 ---
 
 ## How to Contribute 
