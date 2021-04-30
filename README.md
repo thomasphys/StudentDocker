@@ -20,7 +20,9 @@
 
 Pull and run the latest image for the orientation. Open up a terminal and execute 
 
-`sudo docker run -it thomasmcelroy/saporientation`
+```shell
+sudo docker run -it thomasmcelroy/saporientation
+```
 
 This command will produce a new container everytime it is run.
 
@@ -39,31 +41,41 @@ Instead of exiting from a container, you can detach from it by doing `ctrl+p` th
 
 You can reattach to a running container with 
 
-`sudo docker attach [CONTAINER ID]` 
+```shell
+sudo docker attach [CONTAINER ID]
+```
 
 using the ID you found when listing all your running containers.
 
 ### Cleaning up your Containers
 Delete all the stopped containers on your system with them by doing 
 
-`sudo docker container prune`
+```shell
+sudo docker container prune
+```
 
- Which will clear up resources from your system.
+Which will clear up resources from your system.
 
 Alternatively, close only the container you want by
 
- `sudo docker container rm [CONTAINER ID]`
+```shell
+sudo docker container rm [CONTAINER ID]
+```
  
-  If the container is running it will not close, so you will have to either attach to it and exit it or use 
+If the container is running it will not close, so you will have to either attach to it and exit it or use 
   
-  `sudo docker container rm -f [CONTAINER ID]` 
-  
-  to force it to close and be removed.
+```shell
+sudo docker container rm -f [CONTAINER ID]
+```
+
+to force it to close and be removed.
 
 ### Naming Containers
 You can name your containers when starting them up by doing
 
-`sudo docker run -it --name NAME thomasmcelroy/saporientation`
+```shell
+sudo docker run -it --name NAME thomasmcelroy/saporientation
+```
 
 where `NAME` is whatever you want to call your container. This way you can keep track of what your difference containers are for.
 
@@ -96,7 +108,9 @@ On your browser, you can now go to `http://localhost:8888` and type in the "some
 
 If you want to use graphical interfaces, which can be incredibly convenient, you'll need to start by setting the correct permissions. Start with running
 
-`xhost local:root`
+```shell
+xhost local:root
+```
 
 in your terminal. Then, run docker with the following command
 
@@ -121,24 +135,32 @@ WSL can take a lot of resources to run, so be cognisent of this. Moreover, if yo
 
 When closing your instances, note that simply closing the window may not be enough. To end the `Vmmem` task (which is the virtual machine), run
 
-`wsl --shutdown`
+```shell
+wsl --shutdown
+```
 
 in PowerShell. 
 
 ### Windows X11 Forwarding (Graphical Options)
 Windows is a bit annoying for getting graphical options running,how-to-contributeince things were changed with the move to WSL2. Regardless, the first thing you'll want to do is update your package options by running
 
-`sudo apt update`
+```shell
+sudo apt update
+```
 
 in your subsystem terminal. Then you'll get the graphical suite by running
 
-`sudo apt install x11-apps`.
+```shell
+sudo apt install x11-apps
+```
 
 Now the tough part begins. This will involve giving the terminal access through your firewall. I found following [this](https://skeptric.com/wsl2-xserver/) guide to work. Note it will require you to install VcXsrv aswell.
 
 VcXsrv creates a virtual session for your ubuntu subsystem to forward to and will need to be run each time beforehand. The instructions give a command to run VcXsrv using the powershell, which I found worked for me in the following form:
 
-`& 'D:\Programs\VcXsrv\vcxsrv.exe' :0 -multiwindow -wgl -ac`
+```shell
+& 'D:\Programs\VcXsrv\vcxsrv.exe' :0 -multiwindow -wgl -ac
+```
 
 The pathway here will be different for you, just change it to where the program was installed. If this is too complicated, you can also just run the XLaunch application that is used to run VcXsrv. In that case, select "Multiple Windows > Start no client > Disable access control", where the first two options are the defaults, and the last option we enable that extra choice (Don't disable anything). You can save this when it asks, but that isn't necessary.  
 
@@ -146,7 +168,9 @@ Once you have followed the instructions to completion, run `sudo apt install x11
 
 If the clock appears on your screen, you are pretty much done! The only difference is that when you are running your docker client, I found starting it using the following command set up the proper display,
 
-`docker run -it -e DISPLAY=$DISPLAY -u root --name test thomasmcelroy/saporientation`
+```shell
+docker run -it -e DISPLAY=$DISPLAY -u root --name test thomasmcelroy/saporientation
+```
 
 This is assuming the `$DISPLAY` variable is set as the guide recommended. To check that it worked, repeat the above steps of installing graphical suite and running `xclock`.
 
