@@ -122,7 +122,7 @@ Now the tough part begins. This will involve giving the terminal access through 
 
 VcXsrv creates a virtual session for your ubuntu subsystem to forward to and will need to be run each time beforehand.
 
-Once you have followed the instructions to completion, check that the X11 forwarding works by running `xclock` in your terminal. This should pop up an anologue clock on your screen.
+Once you have followed the instructions to completion, run `sudo apt install x11-apps` and check that the X11 forwarding works by running `xclock` in your terminal. This should pop up an anologue clock on your screen.
 
 ---
 
