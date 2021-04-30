@@ -107,7 +107,7 @@ When closing your instances, note that simply closing the window may not be enou
 
 `wsl --shutdown`
 
-in PowerShell. It is important to go through the instructions outlined in the Docker installation in the order described. 
+in PowerShell. 
 
 ### Windows X11 Forwarding (Graphical Options)
 Windows is a bit annoying for getting graphical options running,how-to-contributeince things were changed with the move to WSL2. Regardless, the first thing you'll want to do is update your package options by running
@@ -120,14 +120,19 @@ in your subsystem terminal. Then you'll get the graphical suite by running
 
 Now the tough part begins. This will involve giving the terminal access through your firewall. I found following [this](https://skeptric.com/wsl2-xserver/) guide to work. Note it will require you to install VcXsrv aswell.
 
-VcXsrv creates a virtual session for your ubuntu subsystem to forward to and will need to be run each time beforehand.
+VcXsrv creates a virtual session for your ubuntu subsystem to forward to and will need to be run each time beforehand. The instructions give a command to run VcXsrv using the powershell, which I found worked for me in the following form:
+
+`& 'D:\Programs\VcXsrv\vcxsrv.exe' :0 -multiwindow -wgl -ac`
+
+The pathway here will be different for you, just change it to where the program was installed. If this is too complicated, you can also just run the XLaunch application that is used to run VcXsrv. In that case, select "Multiple Windows > Start no client > Disable access control", where the first two options are the defaults, and the last option we enable that extra choice (Don't disable anything). You can save this when it asks, but that isn't necessary.  
 
 Once you have followed the instructions to completion, run `sudo apt install x11-apps` and check that the X11 forwarding works by running `xclock` in your terminal. This should pop up an anologue clock on your screen.
 
----
+If the clock appears on your screen, you are pretty much done! The only difference is that when you are running your docker client, I found starting it using the following command set up the proper display,
 
-## Dockerx
+`docker run -it -r DISPLAY=$DISPLAY -u root --name test thomasmcelroy/saporientation`
 
+This is assuming the `$DISPLAY` variable is set as the guide recommended. To check that it worked, repeat the above steps of installing graphical suite and running `xclock`. 
 ---
 
 ## How to Contribute 
