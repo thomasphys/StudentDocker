@@ -4,6 +4,7 @@
    - [Docker Tips and Tricks](#docker-tips-and-tricks)
    - [Mounting a Directory](#mounting-a-directory)
    - [Jupyter Notebooks](#Using-Jupyter-Notebooks-through-the-Docker-Image)
+- [Graphical Forwarding for Ubuntu Users](#Ubuntu-X11-Forwarding-(Graphical-Usage))
 - [Notes for Windows Users](#notes-for-windows-users)
    - [Graphics Forwarding for Windows Users](#Windows-X11-Forwarding-(Graphical-Options))
 - [Contribution](#how-to-contribute)
