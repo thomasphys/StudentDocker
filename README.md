@@ -92,6 +92,20 @@ On your browser, you can now go to `http://localhost:8888` and type in the "some
 
 ---
 
+## Ubuntu X11 Forwarding (Graphical Usage)
+
+If you want to use graphical interfaces, which can be incredibly convenient, you'll need to start by setting the correct permissions. Start with running
+
+`xhost local:root`
+
+in your terminal. Then, run docker with the following command
+
+`sudo docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix thomasmcelroy/saporientation`
+
+which we can see sets the display accordingly and mounts the X11 directory. 
+
+---
+
 ## Notes for Windows Users
  to go through the instructions outlined in the Docker installation in the order described. 
 
@@ -130,7 +144,7 @@ Once you have followed the instructions to completion, run `sudo apt install x11
 
 If the clock appears on your screen, you are pretty much done! The only difference is that when you are running your docker client, I found starting it using the following command set up the proper display,
 
-`docker run -it -r DISPLAY=$DISPLAY -u root --name test thomasmcelroy/saporientation`
+`docker run -it -e DISPLAY=$DISPLAY -u root --name test thomasmcelroy/saporientation`
 
 This is assuming the `$DISPLAY` variable is set as the guide recommended. To check that it worked, repeat the above steps of installing graphical suite and running `xclock`.
 
