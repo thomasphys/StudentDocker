@@ -107,21 +107,7 @@ When closing your instances, note that simply closing the window may not be enou
 
 `wsl --shutdown`
 
-in PowerShell. t is important to go through the instructions outlined in the Docker installation in the order described. 
-
-In order for the Windows Subsystem for Linux (WSL) to work with the Docker application, you need them both to be running simultaneously.
-
-The Docker GUI will also provide a simple way to see what current images are available and what containers are running.
-
-It is recommended you use the CLI through the WSL Ubuntu application. 
-
-WSL can take a lot of resources to run, so be cognisent of this. Moreover, if you have Task Manager running in the back, you'll see just how much of your resources are being used.
-
-When closing your instances, note that simply closing the window may not be enough. To end the `Vmmem` task (which is the virtual machine), run
-
-`wsl --shutdown`
-
-in PowerShell.
+in PowerShell. It is important to go through the instructions outlined in the Docker installation in the order described. 
 
 ### Windows X11 Forwarding (Graphical Options)
 Windows is a bit annoying for getting graphical options running,how-to-contributeince things were changed with the move to WSL2. Regardless, the first thing you'll want to do is update your package options by running
