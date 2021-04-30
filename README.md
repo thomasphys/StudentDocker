@@ -100,7 +100,9 @@ If you want to use graphical interfaces, which can be incredibly convenient, you
 
 in your terminal. Then, run docker with the following command
 
-`sudo docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix thomasmcelroy/saporientation`
+```shell
+sudo docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix thomasmcelroy/saporientation
+```
 
 which we can see sets the display accordingly and mounts the X11 directory. 
 
