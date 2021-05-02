@@ -189,13 +189,46 @@ DockerHub link: https://hub.docker.com/r/thomasmcelroy/saporientation
 
 ## Building the Docker Image:
 
-You can build the docker image yourself by doing `docker build -t <tagname> ./ `
+After cloning the StudentDocker repository into your machine, you will need to run 
 
-This command will take a couple hours to run. The final image will be 8-9 GB so beware! 
+```shell
+git submodule sync
+```
 
-You can then run `docker images` to see all your downloaded images. Take note of the Image ID for the sap orientation image. 
+then 
 
-Run `sudo docker build -t [Image ID] ./` to build the image.
+```shell
+git submodule update --init --recursive
+```
+To populate the GEANT4 and ROOT submodules in the repository.
+
+finally, update the modules with
+
+```shell
+git submodule update --remote --merge
+```
+
+You can then build the docker image yourself by doing 
+
+```shell
+docker build -t [IMAGE NAME] ./ 
+```
+
+where [IMAGE NAME] is whatever you want to call your image (must be all lower case).
+
+This command will take a couple hours to run. The final image will be 8-9 GB so beware! If you don't want to wait forever, you can edit the `Dockerfile` nd comment out the ROOT and GEANT4 parts, but this will leave you with an image without either softwares. 
+
+Run `sudo docker build -t [IMAGE NAME] ./` to build the image.
+
+After you build the image, you can run `docker images` to see all your downloaded images. Take note of the `[IMAGE ID]` for your new image. 
+
+Then run your new container by doing 
+
+```shell
+sudo docker run -it [IMAAGE NAME]
+```
+
+You can also replace `[IMAGE NAME]` with the `[IMAGE ID]` you saw when you listed all your images earlier.
 
 ## How to Contribute 
 If you would like to contribute to this image, please open an issue on the repository on GitHub and you will be given permissions to modify the files. 
