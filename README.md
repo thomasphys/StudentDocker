@@ -6,8 +6,8 @@
    - [Jupyter Notebooks](#Using-Jupyter-Notebooks-through-the-Docker-Image)
 - [Notes for Windows Users](#notes-for-windows-users)
 - [Graphics Forwarding from the Docker](#graphics-forwarding-from-the-docker)
-   - [Graphics Forwarding for Ubuntu Users](#Ubuntu-X11-Forwarding-(Graphical-Usage))
-   - [Graphics Forwarding for Windows Users](#Windows-X11-Forwarding-(Graphical-Options))
+   - [Graphics Forwarding for Ubuntu Users](#Ubuntu-X11-Forwarding)
+   - [Graphics Forwarding for Windows Users](#Windows-X11-Forwarding)
 - [Notes for Developers](#notes-for-developers)
    - [Contribution](#how-to-contribute)
    - [DockerHub Link](#Link-to-the-latest-Docker-Image)
@@ -130,7 +130,7 @@ in PowerShell.
 
 # Graphics Forwarding from the Docker
 
-### Ubuntu X11 Forwarding (Graphical Usage)
+### Ubuntu X11 Forwarding 
 
 If you want to use graphical interfaces, which can be incredibly convenient, you'll need to start by setting the correct permissions. Start with running
 
@@ -146,7 +146,7 @@ sudo docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix thomas
 
 which we can see sets the display accordingly and mounts the X11 directory. 
 
-### Windows X11 Forwarding (Graphical Options)
+### Windows X11 Forwarding 
 Windows is a bit annoying for getting graphical options running,since things were changed with the move to Windows Subsystem for Linux 2 (WSL2). Regardless, the first thing you'll want to do is update your package options by running
 
 ```shell
@@ -214,7 +214,7 @@ You can then build the docker image yourself by doing
 docker build -t [IMAGE NAME] ./ 
 ```
 
-where [IMAGE NAME] is whatever you want to call your image (must be all lower case).
+where `[IMAGE NAME]` is whatever you want to call your image (must be all lower case).
 
 This command will take a couple hours to run. The final image will be 8-9 GB so beware! If you don't want to wait forever, you can edit the `Dockerfile` nd comment out the ROOT and GEANT4 parts, but this will leave you with an image without either softwares. 
 
@@ -225,7 +225,7 @@ After you build the image, you can run `docker images` to see all your downloade
 Then run your new container by doing 
 
 ```shell
-sudo docker run -it [IMAAGE NAME]
+sudo docker run -it [IMAGE NAME]
 ```
 
 You can also replace `[IMAGE NAME]` with the `[IMAGE ID]` you saw when you listed all your images earlier.
