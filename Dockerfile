@@ -28,8 +28,7 @@ RUN  apt install -y python3-pip fftw3-dev & \
      if [[ ! -e /usr/bin/pip ]]; then ln -sf /usr/bin/pip3 /usr/bin/pip; fi &&\
      pip3 install Numpy Pandas Matplotlib Scikit-Learn Scipy jupyterlab tensorflow astropy
 
-
-#Install root
+##Install root
 WORKDIR /root
 COPY root ./root
 RUN mkdir /opt/root && \
@@ -42,7 +41,7 @@ RUN mkdir /opt/root && \
 # Install dependencies for Geant4
 RUN apt-get update && apt-get install -y libxerces-c3-dev freeglut3-dev libmotif-dev tk-dev cmake libxpm-dev libxmu-dev libxi-dev
 
-#WORKDIR /geant4
+WORKDIR /geant4
 COPY geant4 /opt/geant4
 
 RUN mkdir /opt/geant4/build && \
@@ -55,8 +54,9 @@ RUN mkdir /opt/geant4/build && \
 RUN apt-get update && apt-get install -y libtet1.5-dev libassimp-dev wget
 
 # Create user
-RUN groupadd -r physuser -g 433
-RUN useradd -u 431 -r -p "eieioo" -g physuser -s /bin/bash -c "Physics user" physuser
+RUN useradd -m physuser 
+RUN passwd -d physuser #remove the password from the user
+RUN adduser physuser sudo #add user to sudo group so they can install stuff if needed on the fly
 RUN mkdir -p /home/physuser
 RUN chown -R physuser:physuser /home/physuser
 ENV DISPLAY :0

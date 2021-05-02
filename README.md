@@ -1,13 +1,15 @@
 # Table of Contents
 - [Prerequisites](#prerequisites)
 - [Quick Start](#quick-start)
-   - [Docker Tips and Tricks](#docker-tips-and-tricks)
+   - [Notes for Windows Users](#notes-for-windows-users)
+- [Docker Tips and Tricks](#docker-tips-and-tricks)
+   - [Detaching from Containers](#detaching-from-containers)
    - [Mounting a Directory](#mounting-a-directory)
    - [Jupyter Notebooks](#Using-Jupyter-Notebooks-through-the-Docker-Image)
-- [Notes for Windows Users](#notes-for-windows-users)
 - [Graphics Forwarding from the Docker](#graphics-forwarding-from-the-docker)
    - [Graphics Forwarding for Ubuntu Users](#Ubuntu-X11-Forwarding)
    - [Graphics Forwarding for Windows Users](#Windows-X11-Forwarding)
+   - [Graphics Forwarding for MacOS Users](#MacOS-X11-Forwarding)
 - [Notes for Developers](#notes-for-developers)
    - [Contribution](#how-to-contribute)
    - [DockerHub Link](#Link-to-the-latest-Docker-Image)
@@ -33,6 +35,25 @@ This command will produce a new container everytime it is run.
 Once inside the container, execute `source env.sh` to get your environment ready (ROOT, GEANT4)
 
 You can exit the container by typing `exit` or `ctrl+D`
+
+## Notes for Windows Users
+ Go through the instructions outlined in the Docker installation in the order described. 
+
+In order for the Windows Subsystem for Linux (WSL) to work with the Docker application, you need them both to be running simultaneously.
+
+The Docker GUI will also provide a simple way to see what current images are available and what containers are running.
+
+It is recommended you use the CLI through the WSL Ubuntu application. 
+
+WSL can take a lot of resources to run, so be cognisent of this. Moreover, if you have Task Manager running in the back, you'll see just how much of your resources are being used.
+
+When closing your instances, note that simply closing the window may not be enough. To end the `Vmmem` task (which is the virtual machine), run
+
+```shell
+wsl --shutdown
+```
+
+in PowerShell. 
 
 # Docker Tips and Tricks
 
@@ -109,30 +130,13 @@ On your browser, you can now go to `http://localhost:8888` and type in the "some
 
 You can also add a `-v` flag to mount a directory with all your data from your machine into the docker by following the instructions in the section [Mounting a Directory](#mounting-a-directory)  and interact with that data using the notebook.
 
-## Notes for Windows Users
- Go through the instructions outlined in the Docker installation in the order described. 
-
-In order for the Windows Subsystem for Linux (WSL) to work with the Docker application, you need them both to be running simultaneously.
-
-The Docker GUI will also provide a simple way to see what current images are available and what containers are running.
-
-It is recommended you use the CLI through the WSL Ubuntu application. 
-
-WSL can take a lot of resources to run, so be cognisent of this. Moreover, if you have Task Manager running in the back, you'll see just how much of your resources are being used.
-
-When closing your instances, note that simply closing the window may not be enough. To end the `Vmmem` task (which is the virtual machine), run
-
-```shell
-wsl --shutdown
-```
-
-in PowerShell. 
-
 # Graphics Forwarding from the Docker
 
-### Ubuntu X11 Forwarding 
+If you want to use graphical interfaces, which can be incredibly convenient, you will need to follow the instruction below for your system. 
 
-If you want to use graphical interfaces, which can be incredibly convenient, you'll need to start by setting the correct permissions. Start with running
+## Ubuntu X11 Forwarding 
+
+Start with running
 
 ```shell
 xhost local:root
@@ -146,7 +150,9 @@ sudo docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix thomas
 
 which we can see sets the display accordingly and mounts the X11 directory. 
 
-### Windows X11 Forwarding 
+Note that you will have to `xhost local:root` everytime you open a new terminal and want to do X11 forwarding with docker. 
+
+## Windows X11 Forwarding 
 Windows is a bit annoying for getting graphical options running,since things were changed with the move to Windows Subsystem for Linux 2 (WSL2). Regardless, the first thing you'll want to do is update your package options by running
 
 ```shell
@@ -174,10 +180,55 @@ Once you have followed the instructions to completion, run `sudo apt install x11
 If the clock appears on your screen, you are pretty much done! The only difference is that when you are running your docker client, I found starting it using the following command set up the proper display,
 
 ```shell
-docker run -it -e DISPLAY=$DISPLAY -u root --name test thomasmcelroy/saporientation
+docker run -it -e DISPLAY=$DISPLAY thomasmcelroy/saporientation
 ```
 
 This is assuming the `$DISPLAY` variable is set as the guide recommended. To check that it worked, repeat the above steps of installing graphical suite and running `xclock`.
+
+
+## MacOS X11 Forwarding 
+You will first need to install homebrew by following the instructions [here](https://brew.sh/).
+
+Next, you'll want to get XQuartz version >2.7.10 by running 
+
+```shell
+brew install xquartz
+``` 
+
+in your terminal.
+
+Run `open -a XQuartz` and click on the XQuartz logo that popped up in your dock. 
+
+Go to XQuartz (top left of your screen) then Preferences. 
+
+Click on the Security Tab in Preferences, and checkmark the "allow conections from network clients" box.
+
+Close the Preferences window and then close XQuartz by quitting it from the dock.
+
+Run XQuartz again with
+
+```shell
+open -a XQuartz
+```
+
+Then run the command 
+
+```shell
+xhost + 127.0.0.1
+```
+which will allow docker to access your screen. 
+
+*Note: if you quit XQuartz you will have to allow docker access to your screen again with* `xhost + 127.0.0.1` *again*.
+
+Now you can run your docker image with the flag `-e DISPLAY=host.docker.internal:0`
+
+So for this docker image
+
+```shell
+sudo docker run -it -e -e DISPLAY=host.docker.internal:0 thomasmcelroy/saporientation
+```
+
+You can run `xclock` once einside the docker image to check that the graphics forwarding is working properly.
 
 
 # Notes For Developers
