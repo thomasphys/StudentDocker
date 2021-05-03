@@ -216,11 +216,11 @@ Go to XQuartz (top left of your screen) then Preferences.
 
 Click on the Security Tab in Preferences, and checkmark the "allow conections from network clients" box.
 
-Close the Preferences window and then close XQuartz by quitting it from the dock.
+run `xhost + 127.0.0.1` in the xquartz terminal. You should see a message saying it's been added to the list of secure connections.
 
-Close your terminal fully.
+Close XQuartz by quitting it from the dock and close your terminal fully.
 
-Restart your temrinal and run XQuartz again with
+Restart your terminal and run XQuartz again with
 
 ```shell
 open -a XQuartz
