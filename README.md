@@ -16,7 +16,7 @@
    - [Build Instructions](#building-the-docker-image)
 
 # Prerequisites
-
+- Around 10 GB of free space on your system.
 - Install Docker ([Ubuntu](https://docs.docker.com/engine/install/ubuntu/), [Windows](https://docs.docker.com/docker-for-windows/wsl/), [Mac](https://docs.docker.com/docker-for-mac/install/))
    - For Windows, make sure to get the latest version of Ubuntu (20.04) for WSL, as it has been confirmed to work. 
 
@@ -86,7 +86,7 @@ Keep in mind that you may need to set the permissons on the folder you are mount
 Start your Docker container with 
 
 ```shell
-sudo docker run -it -p 8888:8888 --ip 0.0.0.0 soudk/eieioo2021`. 
+sudo docker run -it -p 8888:8888 --ip 0.0.0.0 soudk/eieioo2021 
 ```
 This maps the default port for Jupyter notebooks (`8888`) in the docker to your local machines `port 8888`.
 
