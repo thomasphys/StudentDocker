@@ -1,3 +1,6 @@
+# Overview
+These are the instructions to get the docker image running for EIEIOO 2021. If you would like to paticipate in the workshops on Unix, ROOT, PyROOT, GEANT4, and C++ but do not have these softwares on your system, we recommend you use this docker image and have it set up (go through Prereqs, Quick Start, and Graphics Forwarding for you system) *before* the workshops begin. 
+
 # Table of Contents
 - [Prerequisites](#prerequisites)
 - [Quick Start](#quick-start)
