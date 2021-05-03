@@ -191,6 +191,7 @@ This is assuming the `$DISPLAY` variable is set as the guide recommended. To che
 ## MacOS X11 Forwarding 
 You will need to install XQuartz version >2.7.10, you can do this with homebrew or by installing a .dmg file
 
+---
 ### Homebrew method
 Install homebrew by following the instructions [here](https://brew.sh/).
 
@@ -205,6 +206,8 @@ in your terminal.
 ### Installing the .dmg
 You can find and install the .dmg file [here](https://www.xquartz.org/).
 
+---
+
 Once you have XQuartz installed (using either homebrew or .dmg method) you can follow the instructions below.
 
 Run `open -a XQuartz` and click on the XQuartz logo that popped up in your dock. 
@@ -215,7 +218,9 @@ Click on the Security Tab in Preferences, and checkmark the "allow conections fr
 
 Close the Preferences window and then close XQuartz by quitting it from the dock.
 
-Run XQuartz again with
+Close your terminal fully.
+
+Restart your temrinal and run XQuartz again with
 
 ```shell
 open -a XQuartz
@@ -228,7 +233,7 @@ xhost + 127.0.0.1
 ```
 which will allow docker to access your screen. 
 
-*Note: if you quit XQuartz you will have to allow docker access to your screen again with* `xhost + 127.0.0.1` *again*.
+*Note: if you ever quit XQuartz you will have to allow docker access to your screen again with* `xhost + 127.0.0.1`.
 
 Now you can run your docker image with the flag `-e DISPLAY=host.docker.internal:0`
 
