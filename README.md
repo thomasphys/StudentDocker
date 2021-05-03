@@ -1,5 +1,5 @@
 # Overview
-These are the instructions to get the docker image running for [EIEIOO 2021](https://indico.cern.ch/event/1027519/overview). If you would like to paticipate in the workshops on Unix, ROOT, PyROOT, GEANT4, and C++ but do not have these softwares on your system, we recommend you use this docker image and have it set up *before* the workshops begin (go through Prereqs, Quick Start, and Graphics Forwarding for you system). 
+These are the instructions to get the docker image running for [EIEIOO 2021](https://indico.cern.ch/event/1027519/overview). If you would like to participate in the workshops on Unix CLI, ROOT, PyROOT, GEANT4, and C++ but do not have these softwares on your system, we recommend you use this docker image and have it set up *before* the workshops begin (go through Prereqs, Quick Start, and Graphics Forwarding for you system). 
 
 # Table of Contents
 - [Prerequisites](#prerequisites)
