@@ -189,7 +189,10 @@ This is assuming the `$DISPLAY` variable is set as the guide recommended. To che
 
 
 ## MacOS X11 Forwarding 
-You will first need to install homebrew by following the instructions [here](https://brew.sh/).
+You will need to install XQuartz version >2.7.10, you can do this with homebrew or by installing a .dmg file
+
+### Homebrew method
+Install homebrew by following the instructions [here](https://brew.sh/).
 
 Next, you'll want to get XQuartz version >2.7.10 by running 
 
@@ -198,6 +201,11 @@ brew install xquartz
 ``` 
 
 in your terminal.
+
+### Installing the .dmg
+You can find and install the .dmg file [here](https://www.xquartz.org/).
+
+Once you have XQuartz installed (using either homebrew or .dmg method) you can follow the instructions below.
 
 Run `open -a XQuartz` and click on the XQuartz logo that popped up in your dock. 
 
