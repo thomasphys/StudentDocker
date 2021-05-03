@@ -235,7 +235,7 @@ Now you can run your docker image with the flag `-e DISPLAY=host.docker.internal
 So for this docker image
 
 ```shell
-sudo docker run -it -e -e DISPLAY=host.docker.internal:0 soudk/eieioo2021
+sudo docker run -it -e DISPLAY=host.docker.internal:0 soudk/eieioo2021
 ```
 
 You can run `xclock` once inside the docker image to check that the graphics forwarding is working properly.
