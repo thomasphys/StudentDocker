@@ -307,3 +307,4 @@ If you would like to contribute to this image, please open an issue on the repos
 - Soud Al Kharusi
 - Dilraj Ghuman
 - Chris Jillings
+- Jean-François Caron 
